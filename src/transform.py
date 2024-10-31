@@ -1,3 +1,10 @@
+import logging
+
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+
 def lambda_handler(event, context):
     """Transforms the data to give the required rates against USD.
 
@@ -16,5 +23,13 @@ def lambda_handler(event, context):
         }
 
     """
-    # replace this code
-    return {"eur": {"rate": 1.08167213, "reverse_rate": 0.924495}}
+
+    if event:
+        base_currency = list(event.keys())[1]
+
+        base_to_usd_rate = event[base_currency]["usd"]
+        reverse_rate = round((1 / base_to_usd_rate), 6)
+
+        logger.info(f"Success: {base_currency} to usd rate and reverse_rate calculated")
+
+        return {base_currency: {"rate": base_to_usd_rate, "reverse_rate": reverse_rate}}
