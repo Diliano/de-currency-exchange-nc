@@ -13,3 +13,9 @@ def test_isolates_eur_to_usd_rate():
         rates = list(transform_result[base_currency].keys())
         assert rates[0] == "rate"
         assert rates[1] == "reverse_rate"
+
+        base_to_usd_rate = extract_result[base_currency]["usd"]
+        assert transform_result["eur"]["rate"] == base_to_usd_rate
+
+        reverse_rate = round((1 / base_to_usd_rate), 6)
+        assert transform_result["eur"]["reverse_rate"] == reverse_rate
