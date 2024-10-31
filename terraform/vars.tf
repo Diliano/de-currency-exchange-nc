@@ -20,5 +20,5 @@ variable "default_timeout" {
 
 variable "state_machine_name" {
   type    = string
-  default = "currency-workflow-"
+  default = "currency-exchange-state-machine-terraform"
 }
