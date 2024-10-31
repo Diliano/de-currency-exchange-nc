@@ -22,9 +22,7 @@ def lambda_handler(event, context):
                         }
         }
     """
-    # replace this code
-    print(requests.__version__)
-    return {
-        "date": "2024-07-30",
-        "eur": {"gbp": 0.84175906, "jpy": 166.80563884, "usd": 1.08167213},
-    }
+
+    url = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/eur.json"
+    response = requests.get(url)
+    return response.json()
