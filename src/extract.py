@@ -1,4 +1,9 @@
 import requests
+import logging
+
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 
 def lambda_handler(event, context):
@@ -25,4 +30,15 @@ def lambda_handler(event, context):
 
     url = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/eur.json"
     response = requests.get(url)
-    return response.json()
+
+    if response.status_code == 200:
+        data = response.json()
+        base_currency = list(data.keys())[1]
+
+        logger.info(f"HTTP Status: {response.status_code}")
+        logger.info(
+            f"""Currency list extracted for date: {data["date"]} and currency: {base_currency}"""
+        )
+        return data
+    else:
+        logger.info(f"HTTP Status: {response.status_code}")
