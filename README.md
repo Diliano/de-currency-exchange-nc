@@ -1,3 +1,5 @@
-# Orchestration
+# Data Engineering Bootcamp - AWS Step Functions
 
-Instructions for today's sprint can be found at: https://l2c.northcoders.com/courses/data-toolkit/currency-exchange
+## Overview
+
+This repository contains work completed as part of the AWS Step Functions Sprint during my Data Engineering Bootcamp. 
